@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/fragment_list_of_repo">
+
+    <fragment
+        android:id="@+id/fragment_list_of_repo"
+        android:name="com.serhat.repoapp.ui.listofrepos.ListOfRepoFragment"
+        android:label="RepoApp"
+        tools:layout="@layout/fragment_list_of_repo">
+        <action
+            android:id="@+id/action_repo_list_to_repo_detail_fragment"
+            app:destination="@+id/fragment_repo_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_repo_detail"
+        android:name="com.serhat.repoapp.ui.repodetail.RepoDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_repo_detail"></fragment>
+</navigation>
