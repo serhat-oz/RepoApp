@@ -21,6 +21,7 @@ class ListOfRepoViewModel : BaseViewModel() {
                     empty.value = false
                 } else {
                     empty.value = true
+                    toastMessage.value = "User not found"
                 }
             }
         }else{

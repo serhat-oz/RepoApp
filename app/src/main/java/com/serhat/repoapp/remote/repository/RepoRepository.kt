@@ -1,6 +1,5 @@
 package com.serhat.repoapp.remote.repository
 
-import android.util.Log
 import com.serhat.repoapp.model.User
 import com.serhat.repoapp.remote.RequestFactory
 import retrofit2.Call
@@ -17,7 +16,6 @@ class RepoRepository {
             .enqueue(object : Callback<List<User>> {
 
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                    Log.d("repoDataSuccess", response.toString())
                     if (response.code() == 200) {
                         onResult(true, response.body())
                     } else {
@@ -26,7 +24,6 @@ class RepoRepository {
                 }
 
                 override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    Log.d("repoDataFail", t.localizedMessage)
                     onResult(false, null)
                 }
             })
