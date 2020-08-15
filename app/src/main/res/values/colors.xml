@@ -3,4 +3,6 @@
     <color name="colorPrimary">#161619</color>
     <color name="colorPrimaryDark">#161619</color>
     <color name="colorAccent">#2A3B4D</color>
+
+    <color name="listItemTextColor">#323F4D</color>
 </resources>
