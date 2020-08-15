@@ -34,5 +34,8 @@ class ListOfRepoFragment: Fragment() {
         viewDataBinding.viewmodel?.toastMessage?.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
+        viewDataBinding.viewmodel?.liveRepoList?.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, "Repo list fetched", Toast.LENGTH_LONG).show()
+        })
     }
 }

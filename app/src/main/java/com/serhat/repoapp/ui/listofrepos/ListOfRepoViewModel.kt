@@ -8,7 +8,7 @@ import com.serhat.repoapp.ui.base.BaseViewModel
 
 class ListOfRepoViewModel : BaseViewModel() {
 
-    private val liveRepoList = MutableLiveData<List<User>>()
+    val liveRepoList = MutableLiveData<List<User>>()
     val obsUserId = ObservableField<String>()
 
     fun fetchSpecificUserRepoList() {
