@@ -12,15 +12,20 @@ class ListOfRepoViewModel : BaseViewModel() {
     val obsUserId = ObservableField<String>()
 
     fun fetchSpecificUserRepoList() {
-        dataLoading.value = true
-        RepoRepository.getInstance().getUserRepoList(obsUserId.get()!!) { isSuccess, response ->
-            dataLoading.value = false
-            if (isSuccess) {
-                liveRepoList.value = response
-                empty.value = false
-            } else {
-                empty.value = true
+        if (!obsUserId.get().isNullOrEmpty()){
+            dataLoading.value = true
+            RepoRepository.getInstance().getUserRepoList(obsUserId.get()!!) { isSuccess, response ->
+                dataLoading.value = false
+                if (isSuccess) {
+                    liveRepoList.value = response
+                    empty.value = false
+                } else {
+                    empty.value = true
+                }
             }
+        }else{
+            toastMessage.value = "Please fill the user name area"
         }
+
     }
 }
