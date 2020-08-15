@@ -19,5 +19,9 @@
         android:id="@+id/fragment_repo_detail"
         android:name="com.serhat.repoapp.ui.repodetail.RepoDetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_repo_detail"></fragment>
+        tools:layout="@layout/fragment_repo_detail">
+        <argument
+            android:name="repoData"
+            app:argType="com.serhat.repoapp.model.User" />
+    </fragment>
 </navigation>

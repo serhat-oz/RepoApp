@@ -1,5 +1,7 @@
 package com.serhat.repoapp.model
 
+import java.io.Serializable
+
 data class User(
     val archive_url: String,
     val archived: Boolean,
@@ -74,7 +76,7 @@ data class User(
     val url: String,
     val watchers: Int,
     val watchers_count: Int
-)
+) : Serializable
 
 data class Owner(
     val avatar_url: String,
@@ -95,4 +97,4 @@ data class Owner(
     val subscriptions_url: String,
     val type: String,
     val url: String
-)
+) : Serializable

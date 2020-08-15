@@ -1,10 +1,13 @@
 package com.serhat.repoapp.ui.listofrepos
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.serhat.repoapp.BR
+import com.serhat.repoapp.R
 import com.serhat.repoapp.databinding.ReposListRowItemBinding
 import com.serhat.repoapp.model.User
 
@@ -38,7 +41,9 @@ class RepoListViewHolder constructor(private val dataBinding: ViewDataBinding, p
         dataBinding.executePendingBindings()
 
         itemView.setOnClickListener {
-            //TODO repo datail fragment will open here
+            val bundle = Bundle()
+            bundle.putSerializable("repoData", itemData)
+            itemView.findNavController().navigate(R.id.action_repo_list_to_repo_detail_fragment, bundle)
         }
     }
 }
