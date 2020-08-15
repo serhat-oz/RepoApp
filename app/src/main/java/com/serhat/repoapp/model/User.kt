@@ -1,6 +1,6 @@
 package com.serhat.repoapp.model
 
-data class UserRepository(
+data class User(
     val archive_url: String,
     val archived: Boolean,
     val assignees_url: String,
