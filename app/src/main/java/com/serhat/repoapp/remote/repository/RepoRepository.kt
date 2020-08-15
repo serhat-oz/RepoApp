@@ -18,7 +18,7 @@ class RepoRepository {
 
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                     Log.d("repoDataSuccess", response.toString())
-                    if (response.code().equals("200")) {
+                    if (response.code() == 200) {
                         onResult(true, response.body())
                     } else {
                         onResult(false, response.body())
