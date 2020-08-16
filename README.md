@@ -29,5 +29,6 @@ Features
 + User can see the detail of the repository
 + User can add the repository to their favorite. or delete the favorite by clicking the star button
 
-
+Apk is available here
+https://github.com/serhat-oz/RepoApp/raw/master/media/repoapp.apk
 
