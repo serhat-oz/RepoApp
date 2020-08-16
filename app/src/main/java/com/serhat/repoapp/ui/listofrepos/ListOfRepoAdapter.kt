@@ -2,6 +2,7 @@ package com.serhat.repoapp.ui.listofrepos
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.findNavController
@@ -10,6 +11,7 @@ import com.serhat.repoapp.BR
 import com.serhat.repoapp.R
 import com.serhat.repoapp.databinding.ReposListRowItemBinding
 import com.serhat.repoapp.model.User
+import kotlinx.android.synthetic.main.repos_list_row_item.view.*
 
 class ListOfRepoAdapter(private val repoListViewModel: ListOfRepoViewModel) : RecyclerView.Adapter<RepoListViewHolder>() {
     private var repoList: List<User> = emptyList()
@@ -39,6 +41,12 @@ class RepoListViewHolder constructor(private val dataBinding: ViewDataBinding, p
     fun bind(itemData: User) {
         dataBinding.setVariable(BR.itemData, itemData)
         dataBinding.executePendingBindings()
+
+        if (itemData.isAddedToFavorite){
+            itemView.ivFavoriteStar.visibility = View.VISIBLE
+        }else{
+            itemView.ivFavoriteStar.visibility = View.GONE
+        }
 
         itemView.setOnClickListener {
             val bundle = Bundle()

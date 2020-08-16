@@ -3,6 +3,7 @@ package com.serhat.repoapp.model
 import java.io.Serializable
 
 data class User(
+    var isAddedToFavorite:Boolean,
     val archive_url: String,
     val archived: Boolean,
     val assignees_url: String,

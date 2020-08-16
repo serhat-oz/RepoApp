@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.serhat.repoapp.R
 import com.serhat.repoapp.databinding.FragmentListOfRepoBinding
+import com.serhat.repoapp.db.Favorite
+import com.serhat.repoapp.model.User
 import kotlinx.android.synthetic.main.fragment_list_of_repo.*
 import kotlinx.android.synthetic.main.fragment_list_of_repo.view.*
 
@@ -18,6 +20,7 @@ class ListOfRepoFragment: Fragment() {
 
     private lateinit var viewDataBinding: FragmentListOfRepoBinding
     private lateinit var repoAdapter: ListOfRepoAdapter
+    private lateinit var userRepos:List<User>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = FragmentListOfRepoBinding.inflate(inflater, container, false).apply {
@@ -30,6 +33,7 @@ class ListOfRepoFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userRepos = emptyList()
         initToolbar()
         createAdapter()
         initObservers()
@@ -45,8 +49,26 @@ class ListOfRepoFragment: Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
         viewDataBinding.viewmodel?.liveRepoList?.observe(viewLifecycleOwner, Observer {
-            repoAdapter.updateRepoList(it)
+            userRepos = it
+
+            viewDataBinding.viewmodel!!.getAllFavorites().observe(this, Observer<List<Favorite>> {
+                generateRepoListWithFavorites(it)
+            })
         })
+
+
+    }
+
+    private fun generateRepoListWithFavorites(favoriteList: List<Favorite>?) {
+        var position = 0
+        userRepos.forEach {
+            position++
+            var favorite = Favorite(it.node_id)
+            if (favoriteList?.contains(favorite)!!){
+                userRepos[position -1].isAddedToFavorite = true
+            }
+        }
+        repoAdapter.updateRepoList(userRepos)
     }
 
     private fun createAdapter() {

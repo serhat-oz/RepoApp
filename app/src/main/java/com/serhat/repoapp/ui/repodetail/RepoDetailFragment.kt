@@ -47,11 +47,6 @@ class RepoDetailFragment: Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
 
-        /*viewDataBinding.viewmodel!!.getAllFavorites().observe(this, Observer<List<Favorite>>{
-            it
-            Toast.makeText(context, "", Toast.LENGTH_LONG).show()
-        })*/
-
         viewDataBinding.viewmodel!!.getFavoriteByNodeId(nodeId).observe(this, Observer<Favorite>{
             //if null this repo not added to favorites
             isAddedToFavorite = it != null

@@ -12,7 +12,7 @@ class RepoDetailViewModel(application: Application) : BaseViewModel(application)
     private var repository: FavoriteRepository =
         FavoriteRepository(application)
 
-    private var allFavorites: LiveData<List<Favorite>> = repository.getAllFavorites()
+
     private lateinit var favoriteByNodeId:LiveData<Favorite>
 
     fun insert(favorite: Favorite) {
@@ -23,9 +23,6 @@ class RepoDetailViewModel(application: Application) : BaseViewModel(application)
         repository.remove(favorite.nodeId)
     }
 
-    fun getAllFavorites(): LiveData<List<Favorite>> {
-        return allFavorites
-    }
 
     fun getFavoriteByNodeId(nodeId:String):LiveData<Favorite>{
         favoriteByNodeId = repository.getFavoriteByNodeId(nodeId)
