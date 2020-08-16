@@ -21,7 +21,11 @@ class FavoriteRepository(application: Application) {
     }
 
     fun insert(favorite: Favorite) {
-        val insertFavoriteAsyncTask = InsertFavoriteAsyncTask(favoriteDao).execute(favorite)
+        InsertFavoriteAsyncTask(favoriteDao).execute(favorite)
+    }
+
+    fun remove(nodeId: String) {
+        RemoveFavoriteAsyncTask(favoriteDao).execute(nodeId)
     }
 
     fun getFavoriteByNodeId(nodeId: String):LiveData<Favorite>{
@@ -39,6 +43,14 @@ class FavoriteRepository(application: Application) {
 
         override fun doInBackground(vararg p0: Favorite?) {
             favoriteDao.insert(p0[0]!!)
+        }
+    }
+
+    private class RemoveFavoriteAsyncTask(favoriteDao: FavoriteDao) : AsyncTask<String, Unit, Unit>() {
+        val favoriteDao = favoriteDao
+
+        override fun doInBackground(vararg p0: String?) {
+            favoriteDao.deleteFavorite(p0[0]!!)
         }
     }
 

@@ -42,8 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/tb_title_main"
+                android:maxLength="20"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 />
             <ImageView
                 android:id="@+id/ivToolbarAddFavorite"
@@ -51,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_star_white_24dp"
                 />
 
         </androidx.appcompat.widget.Toolbar>

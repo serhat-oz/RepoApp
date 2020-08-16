@@ -48,9 +48,7 @@ abstract class FavoriteDatabase : RoomDatabase() {
         private val favoriteDao = db?.favoriteDao()
 
         override fun doInBackground(vararg p0: Unit?) {
-            favoriteDao?.insert(Favorite("Title 1"))
-            favoriteDao?.insert(Favorite("Title 2"))
-            favoriteDao?.insert(Favorite("Title 3"))
+
         }
     }
 

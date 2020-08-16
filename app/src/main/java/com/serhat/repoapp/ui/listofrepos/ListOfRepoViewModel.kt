@@ -1,12 +1,13 @@
 package com.serhat.repoapp.ui.listofrepos
 
+import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.serhat.repoapp.model.User
 import com.serhat.repoapp.remote.repository.RepoRepository
 import com.serhat.repoapp.ui.base.BaseViewModel
 
-class ListOfRepoViewModel : BaseViewModel() {
+class ListOfRepoViewModel(application: Application) : BaseViewModel(application) {
 
     val liveRepoList = MutableLiveData<List<User>>()
     val obsUserId = ObservableField<String>()
