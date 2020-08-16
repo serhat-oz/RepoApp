@@ -5,30 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.serhat.repoapp.BR
 import com.serhat.repoapp.R
+import com.serhat.repoapp.databinding.FragmentRepoDetailBinding
 import com.serhat.repoapp.model.User
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_repo_detail.*
 
 class RepoDetailFragment: Fragment() {
 
+    private lateinit var viewDataBinding: FragmentRepoDetailBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_repo_detail, container, false)
+        viewDataBinding = FragmentRepoDetailBinding.inflate(inflater, container, false).apply {
+            viewmodel = ViewModelProviders.of(this@RepoDetailFragment).get(RepoDetailViewModel::class.java)
+            lifecycleOwner = viewLifecycleOwner
+        }
+        return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         var repoData = arguments?.let { RepoDetailFragmentArgs.fromBundle(it).repoData}
+        viewDataBinding.setVariable(BR.itemData, repoData)
 
         initViews(repoData)
     }
 
     private fun initViews(repoData: User?) {
-        txtUserName.text = repoData?.owner!!.login
-        Picasso.get().load(repoData.owner.avatar_url).placeholder(R.drawable.place_holder).into(ivUserImage)
-        //TODO format texts
-        tvStarCount.text = "Star Count: " + repoData.stargazers_count
-        tvOpenIssueCount.text = "Open Issues Count: " + repoData.open_issues_count
+
+        Picasso.get().load(repoData!!.owner.avatar_url).placeholder(R.drawable.place_holder).into(ivUserImage)
+        tvStarCount.text = repoData.stargazers_count.toString()
+        tvOpenIssueCount.text = repoData.open_issues_count.toString()
+        tvLanguage.text = repoData.language
     }
 }
