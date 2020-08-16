@@ -34,6 +34,10 @@ android {
     dataBinding{
         enabled = true
     }
+
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
 }
 
 dependencies {
@@ -62,4 +66,14 @@ dependencies {
 
     // Databinding compiler
     kapt "com.android.databinding:compiler:$rootProject.binding_compiler_version"
+
+
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
+
+    // Lifecycle components
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+
+
 }
