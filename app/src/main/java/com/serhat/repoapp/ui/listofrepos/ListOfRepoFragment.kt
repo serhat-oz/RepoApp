@@ -64,9 +64,7 @@ class ListOfRepoFragment: Fragment() {
         userRepos.forEach {
             position++
             var favorite = Favorite(it.node_id)
-            if (favoriteList?.contains(favorite)!!){
-                userRepos[position -1].isAddedToFavorite = true
-            }
+            userRepos[position -1].isAddedToFavorite = favoriteList?.contains(favorite)!!
         }
         repoAdapter.updateRepoList(userRepos)
     }
