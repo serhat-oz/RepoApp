@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.serhat.repoapp.R
 import com.serhat.repoapp.databinding.FragmentListOfRepoBinding
 import kotlinx.android.synthetic.main.fragment_list_of_repo.*
+import kotlinx.android.synthetic.main.fragment_list_of_repo.view.*
 
 class ListOfRepoFragment: Fragment() {
 
@@ -28,8 +30,14 @@ class ListOfRepoFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initToolbar()
         createAdapter()
         initObservers()
+    }
+
+    private fun initToolbar() {
+        val toolbar = viewDataBinding.tbMain
+        toolbar.tb_title_main.text = getString(R.string.app_name)
     }
 
     private fun initObservers() {

@@ -11,7 +11,10 @@ import com.serhat.repoapp.R
 import com.serhat.repoapp.databinding.FragmentRepoDetailBinding
 import com.serhat.repoapp.model.User
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_list_of_repo.view.*
+import kotlinx.android.synthetic.main.fragment_list_of_repo.view.tb_title_main
 import kotlinx.android.synthetic.main.fragment_repo_detail.*
+import kotlinx.android.synthetic.main.fragment_repo_detail.view.*
 
 class RepoDetailFragment: Fragment() {
 
@@ -36,9 +39,19 @@ class RepoDetailFragment: Fragment() {
 
     private fun initViews(repoData: User?) {
 
-        Picasso.get().load(repoData!!.owner.avatar_url).placeholder(R.drawable.place_holder).into(ivUserImage)
+        Picasso.get().load(repoData!!.owner.avatar_url).placeholder(R.drawable.place_holder)
+            .into(ivUserImage)
         tvStarCount.text = repoData.stargazers_count.toString()
         tvOpenIssueCount.text = repoData.open_issues_count.toString()
         tvLanguage.text = repoData.language
+
+
+        val toolbar = viewDataBinding.tbDetail
+        toolbar.tb_title_main.text = repoData.owner.login
+
+        toolbar.ivToolbarBackButton.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
+
 }
